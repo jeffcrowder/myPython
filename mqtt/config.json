@@ -1,0 +1,6 @@
+{
+   "broker":	"rpi3",
+   "port":	"1883",
+   "topic":	"piTemp",
+   "updateSec":	5.0
+}
