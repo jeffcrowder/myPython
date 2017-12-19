@@ -18,6 +18,7 @@ class Vehicle(object):
     wheels = 0
 
     def __init__(self, miles, make, model, year, sold_on):
+        print("init in abs class")
         self.miles = miles
         self.make = make
         self.model = model
