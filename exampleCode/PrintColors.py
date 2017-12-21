@@ -15,7 +15,7 @@ class PrintColors:
     CYELLOW = '\33[33m'
     CBLUE   = '\33[34m'
     CVIOLET = '\33[35m'
-    CBEIGE  = '\33[36m'
+    CCYAN   = '\33[36m'
     CWHITE  = '\33[37m'
 
     CBLACKBG  = '\33[40m'
@@ -24,7 +24,7 @@ class PrintColors:
     CYELLOWBG = '\33[43m'
     CBLUEBG   = '\33[44m'
     CVIOLETBG = '\33[45m'
-    CBEIGEBG  = '\33[46m'
+    CCYANBG   = '\33[46m'
     CWHITEBG  = '\33[47m'
 
     CGREY    = '\33[90m'
@@ -33,7 +33,7 @@ class PrintColors:
     CYELLOW2 = '\33[93m'
     CBLUE2   = '\33[94m'
     CVIOLET2 = '\33[95m'
-    CBEIGE2  = '\33[96m'
+    CCYAN2   = '\33[96m'
     CWHITE2  = '\33[97m'
 
     CGREYBG    = '\33[100m'
@@ -42,7 +42,7 @@ class PrintColors:
     CYELLOWBG2 = '\33[103m'
     CBLUEBG2   = '\33[104m'
     CVIOLETBG2 = '\33[105m'
-    CBEIGEBG2  = '\33[106m'
+    CCYANBG2   = '\33[106m'
     CWHITEBG2  = '\33[107m'
 
     def print_format_table(self):
