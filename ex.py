@@ -4,6 +4,9 @@ import RPi.GPIO as GPIO
 import socket
 import datetime
 import json
+from sensorData import CpuTemp as ct 
+#sys.path.insert(0, '/home/pi/myPython/sensorData')
+#import CpuTemp as ct
 
 GPIO.setmode(GPIO.BCM)
 
@@ -19,6 +22,10 @@ GPIO.output(12,GPIO.HIGH)
 time.sleep(1)
 GPIO.output(12,GPIO.LOW)
 GPIO.cleanup()
+
+cputemp = ct.CpuTemp(True)
+val = cputemp.getValue()
+print(val)
 
 d = {'hostname':'','time':'','temp':''}
 print(d)
