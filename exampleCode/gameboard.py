@@ -42,6 +42,57 @@ class GameBoard:
             self.colorList[cnt][i] = colors[i]
             #print(str(self.colorList[cnt][i]))
 
+    def user_guess(self):
+        print "---------------------------------------------------------------------"
+        print ""
+        print ""
+        print "Enter your guess for the four colors and position of the secret code."
+        print "Please choose four of the six following colors: " 
+        print self.c.CWHITE  + "   w =white" 
+        print self.c.CRED    + "   r =red " 
+        print self.c.CGREEN  + "   g =green " 
+        print self.c.CYELLOW + "   y =yellow "
+        print self.c.CBLUE   + "   b =blue " 
+        print self.c.CCYAN   + "   c =cyan " + self.c.ENDC
+        print "---------------------------------------------------------------------"
+        
+        guess = [self.c.CBLACK,self.c.CBLACK,self.c.CBLACK,self.c.CBLACK] 
+        x = 0
+        while x <= 3:
+            try:
+                ui = raw_input()
+            except ValueError:
+                print("sorry, I didn't understand that.")
+                continue
+
+            if ui == 'w':
+                guess[x] = self.c.CWHITE
+                print("Location #%s choice was white" % (str(x+1)))
+                x += 1
+            elif ui == 'r':
+                guess[x] = self.c.CRED
+                print("Location #%s choice was red" % (str(x+1)))
+                x += 1
+            elif ui == 'g':
+                guess[x] = self.c.CGREEN
+                print("Location #%s choice was green" % (str(x+1)))
+                x += 1
+            elif ui == 'y':
+                guess[x] = self.c.CYELLOW
+                print("Location #%s choice was yellow" % (str(x+1)))
+                x += 1
+            elif ui == 'b':
+                guess[x] = self.c.CBLUE
+                print("Location #%s choice was blue" % (str(x+1)))
+                x += 1
+            elif ui == 'c':
+                guess[x] = self.c.CCYAN
+                print("Location #%s choice was cyan" % (str(x+1)))
+                x += 1
+            else:
+                print("you didnt pick a valid color!")
+        return guess
+
     def print_board(self):
         for i in range(self.numRows):
             #c = PrintColor()
@@ -71,37 +122,16 @@ gb = GameBoard()
 
 pc = gb.c #PrintColor()
 
+print( chr(27) + "[2J" )
 print" test "
-# Get the guess colors from the command line 
-guessColor0 = pc.CVIOLET
-guessColor1 = pc.CBLUE
-guessColor2 = pc.CRED
-guessColor3 = pc.CYELLOW
-guess = [guessColor0, guessColor1, guessColor2, guessColor3]
-         
-gb.latest_guess(guess)
 
-gb.print_board()
+gameCounter = 0
+while gameCounter < 10:
+    guess = gb.user_guess()
+    gb.latest_guess(guess)
+    gb.print_board()
+    gameCounter += 1
 
-print('Next guess: ')
 
-guessColor0 = pc.CRED
-guessColor1 = pc.CVIOLET
-guessColor2 = pc.CYELLOW
-guessColor3 = pc.CWHITE
-guess = [guessColor0, guessColor1, guessColor2, guessColor3]
 
-gb.latest_guess(guess)
-gb.print_board()
-
-print('Next guess: ')
-
-guessColor0 = pc.CYELLOW
-guessColor1 = pc.CVIOLET
-guessColor2 = pc.CCYAN
-guessColor3 = pc.CRED
-guess = [guessColor0, guessColor1, guessColor2, guessColor3]
-
-gb.latest_guess(guess)
-gb.print_board()
 
