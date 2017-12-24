@@ -1,3 +1,4 @@
+import random
 from PrintColors import PrintColors
 
 class GameBoard:
@@ -36,12 +37,19 @@ class GameBoard:
 
     winFlag = False
     
-    answer = [c.CRED,c.CWHITE,c.CCYAN,c.CYELLOW]
+    answer = [c.CBLACK,c.CBLACK,c.CBLACK,c.CBLACK]
     CBLACKBG = c.CBLACKBG
     ENDC = c.ENDC
 
     numRows = 10
     guessCount = 10
+    
+    def build_secret_code(self):
+        #print "this is where I will build the secret code"
+        possibleColors = [ self.c.CWHITE,  self.c.CGREEN, self.c.CRED, \
+                           self.c.CYELLOW, self.c.CBLUE , self.c.CCYAN ]
+        self.answer = random.sample(possibleColors, 4)
+
 
     def update_guess(self, colors):
         self.thisGuess = colors
@@ -133,13 +141,13 @@ class GameBoard:
             gstr0 = ''.join([self.colorList[i][0], self.guessList[i][0]])
             gstr1 = ''.join([self.colorList[i][1], self.guessList[i][1]])
             gstr2 = ''.join([self.colorList[i][2], self.guessList[i][2]])
-            gstr3 = ''.join([self.colorList[i][3], self.guessList[i][3], pc.ENDC])
+            gstr3 = ''.join([self.colorList[i][3], self.guessList[i][3], self.c.ENDC])
             
             #build the clue string
             cstr0 = ''.join([self.clueColorList[i][0], self.clueList[i][0]])
             cstr1 = ''.join([self.clueColorList[i][1], self.clueList[i][1]])
             cstr2 = ''.join([self.clueColorList[i][2], self.clueList[i][2]])
-            cstr3 = ''.join([self.clueColorList[i][3], self.clueList[i][3], pc.ENDC])
+            cstr3 = ''.join([self.clueColorList[i][3], self.clueList[i][3], self.c.ENDC])
             
             guessString = self.c.CBLACKBG + "| %s %s %s %s |" % (gstr0,gstr1,gstr2,gstr3) \
                 + self.c.CBLACKBG + "%s%s%s%s|" % (cstr0,cstr1,cstr2,cstr3) 
@@ -148,15 +156,14 @@ class GameBoard:
 
 gb = GameBoard()
 
-pc = gb.c 
-
 print( chr(27) + "[2J" )
+gb.build_secret_code()
 
 try:
     gameCounter = 0
     while not gb.winFlag: 
         if gameCounter == 10:
-            print(" You lost. Used all %s moves." % gameCounter)
+            print(" You lost. Used all %s moves.\n\n" % gameCounter)
             break
         guess = gb.user_guess()
         gb.update_guess(guess)
@@ -164,8 +171,8 @@ try:
         gb.print_board()
         gameCounter += 1
 
-    print(" You won in %s moves." % gameCounter)
+    print(" You won in %s moves!\n\n" % gameCounter)
 
 except KeyboardInterrupt:
-    print "Ending the Game"
+    print "Ending the Game\n\n"
 
