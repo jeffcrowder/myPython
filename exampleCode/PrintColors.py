@@ -67,7 +67,7 @@ class PrintColors:
         """
         print self.CBOLD + "BOLD: adasdfasd" + self.ENDC
         print self.CURL + "UNDERLINE: adasdfasd" + self.ENDC
-        print self.CRED + self.CBEIGEBG2 + self.CURL + "CRED: "  + self.CGREEN + self.CREDBG + "sfassd" + self.ENDC
+        print self.CRED + self.CCYANBG2 + self.CURL + "CRED: "  + self.CGREEN + self.CREDBG + "sfassd" + self.ENDC
 
     def clear_screen(self):
         """

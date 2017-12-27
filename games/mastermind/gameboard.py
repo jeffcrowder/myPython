@@ -1,4 +1,7 @@
 import random
+import sys
+
+sys.path.insert(0, '/home/pi/myPython/exampleCode')
 from PrintColors import PrintColors
 
 class GameBoard:
@@ -43,13 +46,22 @@ class GameBoard:
 
     numRows = 10
     guessCount = 10
-    
+   
+    def splash_screen(self):
+        print "\n" + self.c.CGREEN
+        print " __  __    _    ____ _____ _____ ____  __  __ ___ _   _ ____  "  
+        print "|  \/  |  / \  / ___|_   _| ____|  _ \|  \/  |_ _| \ | |  _ \ " 
+        print "| |\/| | / _ \ \___ \ | | |  _| | |_) | |\/| || ||  \| | | | |"
+        print "| |  | |/ ___ \ ___) || | | |___|  _ <| |  | || || |\  | |_| |"
+        print "|_|  |_/_/   \_|____/ |_| |_____|_| \_|_|  |_|___|_| \_|____/ "
+        print"\n" + self.c.ENDC
+                                                                           
+
     def build_secret_code(self):
         #print "this is where I will build the secret code"
         possibleColors = [ self.c.CWHITE,  self.c.CGREEN, self.c.CRED, \
                            self.c.CYELLOW, self.c.CBLUE , self.c.CCYAN ]
         self.answer = random.sample(possibleColors, 4)
-
 
     def update_guess(self, colors):
         self.thisGuess = colors
@@ -68,11 +80,12 @@ class GameBoard:
     def user_guess(self):
         print ""
         print "---------------------------------------------------------------------"
-        print "Enter your guess for the four colors and position of the secret code."
-        print "Please choose four of the six following colors: " 
-        print self.c.CWHITE  + "   w =white" + self.c.CRED + "   r =red"  
-        print self.c.CGREEN  + "   g =green" + self.c.CYELLOW + "   y =yellow" 
-        print self.c.CBLUE   + "   b =blue " + self.c.CCYAN + "   c =cyan" + self.c.ENDC 
+        print "Goal is to find the secret code. Identify the proper location and "
+        print "color of the four pegs within 10 moves or less."
+        print "The four pegs can be any of the six following colors: " 
+        print self.c.CWHITE+" w =white"+self.c.CRED+" r =red"+self.c.CGREEN+" g =green" 
+        print self.c.CYELLOW+ " y =yellow"+self.c.CBLUE+" b =blue"+self.c.CCYAN+" c =cyan" 
+        print self.c.ENDC
         print "---------------------------------------------------------------------\n"
         
         guess = [self.c.CBLACK,self.c.CBLACK,self.c.CBLACK,self.c.CBLACK] 
@@ -123,8 +136,8 @@ class GameBoard:
         for i,j in zip(a,g):
             if i==j:
                 location_count += 1
-                print("location count")
-                print(location_count)
+                #print("location count")
+                #print(location_count)
         # set the win flag 
         if location_count == 4:
             self.winFlag = True
@@ -157,6 +170,7 @@ class GameBoard:
 gb = GameBoard()
 
 print( chr(27) + "[2J" )
+gb.splash_screen()
 gb.build_secret_code()
 
 try:
